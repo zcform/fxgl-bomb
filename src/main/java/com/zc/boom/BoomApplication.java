@@ -72,6 +72,7 @@ public class BoomApplication extends GameApplication {
 
     }
 
+    // 计时
     Text time = new Text();
 
     @Override
@@ -132,7 +133,7 @@ public class BoomApplication extends GameApplication {
 
             if (-1 == score) {
                 reCellEntity(cell, "boom");
-            }else {
+            } else {
                 reCellEntity(cell, cell.getScore());
             }
         }
@@ -145,7 +146,7 @@ public class BoomApplication extends GameApplication {
 
             long now = System.currentTimeMillis();
 
-            int compare = (int) ((now - sTime) / 1000);
+            long compare = Math.floorDiv((now - sTime), 1000);
 
             time.setText(compare + " s");
         }
@@ -247,7 +248,7 @@ public class BoomApplication extends GameApplication {
                 over();
                 reCellEntity(cell, "boomRed");
             } else {
-                if(BoomEntityType.EMPTY == type){
+                if (BoomEntityType.EMPTY == type) {
                     openNum(cell);
                 }
             }
@@ -294,8 +295,8 @@ public class BoomApplication extends GameApplication {
         for (BoomCell boomCell : range) {
             if (boomCell.getScore() == 0) {
                 openNum0(boomCell);
-            }else {
-                if(boomCell.getScore() != -1){
+            } else {
+                if (boomCell.getScore() != -1) {
                     reCellEntity(cell, boomCell.getScore());
                 }
             }
